@@ -1,0 +1,51 @@
+const NoteRepository=require('../repository/note-repository');
+
+class Noteservie{
+    constructor()
+    {
+        this.noteRepository=new NoteRepository();
+    }
+    async Addnote(data){
+        try {
+            const note=await this.noteRepository.create(data);
+            return note;
+            
+        } catch (error) {
+            console.log("error in service layer");
+            throw{error};
+        }
+    }
+    async seenote(noteid){
+        try {
+            const note=await this.noteRepository.get(noteid);
+            return note;
+            
+        } catch (error) {
+            console.log("error in service layer");
+            throw{error};
+        }
+    }
+    async deletenote(noteid){
+        try {
+            const note=await this.noteRepository.delete(noteid);
+            return note;
+            
+        } catch (error) {
+            console.log("error in service layer");
+            throw{error};
+        }
+    }
+    async updatenote(noteid,data){
+        try {
+            const note=await this.noteRepository.update(noteid,data);
+            return note;
+            
+        } catch (error) {
+            console.log("error in service layer");
+            throw{error};
+        }
+    }
+   
+
+}
+module.exports=Noteservie;
